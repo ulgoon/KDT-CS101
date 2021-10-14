@@ -41,7 +41,9 @@ class Stack {
     }
 
     clear(){
-        this.items = []
+        //0. this.items = []
+        //1. this.items.length = 0
+        this.items.splice(0,this.items.length)
         this.count = 0
         console.log('Reset Stack complete')
         return this.items
