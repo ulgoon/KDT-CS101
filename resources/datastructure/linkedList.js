@@ -64,6 +64,49 @@ class LinkedList {
         console.log(`LL: new Node ${data} inserted in front of ${NewNode.next.data}`)
         this.size++
     }
+    
+    getFrom(index) {
+        let curr = this.head
+        let count = 0
+
+        while (curr) {
+            if (count===index) {
+                console.log(curr.data)
+                break
+            }
+            count++
+            curr = curr.next
+        }
+        console.log(`LL: ${curr.data} from ${index}`)
+        return curr.data
+    }
+
+    removeFrom(index) {
+        if (index>0 && index>this.size){
+            return false
+        }
+
+        let curr = this.head
+        let prev
+        let count = 0
+
+        if (index===0) {
+            this.head = curr.next
+        } else {
+            while(count<index){
+                count++
+                prev = curr
+                curr = curr.next
+            }
+            prev.next = curr.next
+        }
+        console.log(`${curr.data} has removed`)
+        this.size--
+    }
+    //TODO
+    clear(){continue}
+    countNode(){continue}
+    printListData(){continue}
 }
 
 const LList = new LinkedList()
@@ -74,3 +117,6 @@ LList.insertLast(14)
 
 LList.insertAt(15,2)
 LList.insertAt(16,2)
+
+LList.getFrom(3)
+LList.removeFrom(3)
