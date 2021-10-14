@@ -1,12 +1,34 @@
-class Queue {
+class QueueElement {
+    constructor(element, priority){
+        this.element = element
+        this.priority = priority
+    }
+} // {'element':1, 'priority':2}
+
+class PriorityQueue {
     constructor() {
         this.items = []
         this.count = 0
     }
 
-    enqueue(element){
-        this.items[this.count] = element
-        console.log(`queue[${this.count}]: ${element} enqueued`)
+    enqueue(element,priority){
+        // hint1: create QueueElement instance
+        // hint2: low number will get higher priority
+        const qElement = new QueueElement(element, priority)
+        let isEnqueued = false
+
+        for(let i=0;i<this.items.length;i++){
+            if(this.items[i].priority>qElement.priority){
+                this.items.splice(i,0,qElement)
+                isEnqueued = true
+                console.log(`pQueue[${i}]: ${element} enqueued in front of ${this.items[i+1].element}`)
+                break
+            }
+        }
+        if (!isEnqueued){
+            this.items[this.count] = qElement
+            console.log(`queue[${this.count}]: ${element} enqueued`)
+        }
         this.count++
         return this.count-1
     }
@@ -48,20 +70,7 @@ class Queue {
     }
 }
 
-const queue = new Queue()
-
-queue.isEmpty()
-queue.enqueue('java')
-queue.enqueue('Script')
-queue.dequeue()
-
-queue.enqueue('script')
-queue.enqueue('Awesome')
-queue.front()
-queue.isEmpty()
-
-queue.print()
-queue.size()
-queue.clear()
-
-queue.isEmpty()
+const pQueue = new PriorityQueue()
+pQueue.enqueue(1,3) 
+pQueue.enqueue(2,4) 
+pQueue.enqueue(3,2)
