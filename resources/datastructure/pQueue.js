@@ -35,7 +35,7 @@ class PriorityQueue {
 
     dequeue(){
         if(this.count===0) return undefined
-        let toDequeue = this.items[0]
+        let toDequeue = this.items[0].element
         this.count--
         this.items.shift()
         console.log(`queue[0]: ${toDequeue} has dequeued`)
@@ -43,8 +43,8 @@ class PriorityQueue {
     }
 
     front(){
-        console.log(`queue[front]: ${this.items[0]}`)
-        return this.items[0]
+        console.log(`queue[front]: ${this.items[0].element}`)
+        return this.items[0].element
     }
 
     isEmpty(){
@@ -58,9 +58,10 @@ class PriorityQueue {
         return this.count
     }
     print(){
-        let toPrint = this.items.toString()
-        console.log(toPrint)
-        return toPrint
+        for (const item of this.items){
+            console.log(item.element, item.priority)
+        }
+        return undefined
     }
     clear(){
         this.items.splice(0,this.items.length)
@@ -74,3 +75,8 @@ const pQueue = new PriorityQueue()
 pQueue.enqueue(1,3) 
 pQueue.enqueue(2,4) 
 pQueue.enqueue(3,2)
+pQueue.print()
+
+pQueue.dequeue()
+pQueue.dequeue()
+pQueue.print()
