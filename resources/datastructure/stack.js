@@ -30,8 +30,22 @@ class Stack {
         return this.count===0
     } // return true or false
 
-    size(){continue}
-    clear(){}
+    size(){
+        console.log(`Stack size: ${this.count}`)
+        return this.count
+    }
+
+    print(){
+        console.log(`${this.items.toString()}`)
+        return this.items.toString()
+    }
+
+    clear(){
+        this.items = []
+        this.count = 0
+        console.log('Reset Stack complete')
+        return this.items
+    } // initialize
 }
 
 const stack = new Stack()
@@ -46,5 +60,12 @@ stack.pop()
 
 stack.isEmpty()
 stack.peek()
-stack.push('banana')
+stack.push('bike')
 stack.peek()
+
+stack.size()
+stack.print()
+
+stack.clear()
+stack.size()
+stack.print()
