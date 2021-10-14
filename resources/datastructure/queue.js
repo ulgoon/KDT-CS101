@@ -31,9 +31,21 @@ class Queue {
         return result
     }
 
-    size(){continue}
-    print(){continue}
-    clear(){continue}
+    size(){
+        console.log(`queue size: ${this.count}`)
+        return this.count
+    }
+    print(){
+        let toPrint = this.items.toString()
+        console.log(toPrint)
+        return toPrint
+    }
+    clear(){
+        this.items.splice(0,this.items.length)
+        this.count = 0
+        console.log('Reset queue complete')
+        return this.items
+    }
 }
 
 const queue = new Queue()
@@ -46,4 +58,10 @@ queue.dequeue()
 queue.enqueue('script')
 queue.enqueue('Awesome')
 queue.front()
+queue.isEmpty()
+
+queue.print()
+queue.size()
+queue.clear()
+
 queue.isEmpty()
