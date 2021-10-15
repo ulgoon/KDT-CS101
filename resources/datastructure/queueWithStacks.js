@@ -47,3 +47,40 @@ class Stack {
     }
 }
 
+class QueueWithStacks {
+    constructor(){
+        this.stack1 = []
+        this.stack2 = []
+    }
+
+    enqueue(value){
+        this.stack1.push(value)
+        return true
+    }
+    dequeue(){
+        while (this.stack1.length>0) {
+            this.stack2.push(this.stack1.pop())
+        }
+
+        const toDequeue = this.stack2.pop()
+
+        while (this.stack2.length>0){
+            this.stack1.push(this.stack2.pop())
+        }
+        return toDequeue
+    }
+    print(){
+        console.log(`${this.stack1.toString()}`)
+    }
+}
+
+const queueStacks = new QueueWithStacks
+
+queueStacks.enqueue(1)
+queueStacks.enqueue(2)
+queueStacks.enqueue(3)
+queueStacks.print()
+
+queueStacks.dequeue()
+queueStacks.dequeue()
+queueStacks.print()
