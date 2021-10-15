@@ -13,7 +13,7 @@ class Stack {
 
     pop() {
         if(this.count==0) return undefined
-        let toDelete = this.items[this.count - 1]
+        let toDelete = this.items.pop()
         this.count -= 1
         //console.log(`stack[${this.count}]: ${toDelete} removed`)
         return toDelete
@@ -49,8 +49,8 @@ class Stack {
 
 class QueueWithStacks {
     constructor(){
-        this.stack1 = []
-        this.stack2 = []
+        this.stack1 = new Stack()
+        this.stack2 = new Stack()
     }
 
     enqueue(value){
@@ -58,23 +58,23 @@ class QueueWithStacks {
         return true
     }
     dequeue(){
-        while (this.stack1.length>0) {
+        while (this.stack1.items.length>0) {
             this.stack2.push(this.stack1.pop())
         }
 
         const toDequeue = this.stack2.pop()
 
-        while (this.stack2.length>0){
+        while (this.stack2.items.length>0){
             this.stack1.push(this.stack2.pop())
         }
         return toDequeue
     }
     print(){
-        console.log(`${this.stack1.toString()}`)
+        console.log(`${this.stack1.items.toString()}`)
     }
 }
 
-const queueStacks = new QueueWithStacks
+const queueStacks = new QueueWithStacks()
 
 queueStacks.enqueue(1)
 queueStacks.enqueue(2)
@@ -82,5 +82,6 @@ queueStacks.enqueue(3)
 queueStacks.print()
 
 queueStacks.dequeue()
+queueStacks.print()
 queueStacks.dequeue()
 queueStacks.print()
