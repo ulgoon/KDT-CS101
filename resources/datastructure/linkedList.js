@@ -104,9 +104,26 @@ class LinkedList {
         this.size--
     }
     //TODO
-    clear(){continue}
-    countNode(){continue}
-    printListData(){continue}
+    clearList() {
+        this.head = null
+        this.size = 0
+        return this.head
+    }
+
+    countNode() {
+        console.log(this.size)
+        return this.size
+    }
+
+    printListData() {
+        let current = this.head
+
+        while (current) {
+            console.log(current.data)
+            current = current.next
+        }
+        console.log('\n')
+    }
 }
 
 const LList = new LinkedList()
